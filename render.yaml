@@ -1,0 +1,18 @@
+databases:
+  - name: flatpickrails
+    databaseName: flatpickrails
+    user: m7marius7
+
+services:
+  - type: web
+    name: flatpickrails
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mysite
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
