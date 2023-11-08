@@ -1,43 +1,43 @@
-# databases:
-#   - name: postgres
-#     databaseName: flatpickrails
-#     user: m7marius7
-#     ipAllowList: []
-
-# services:
-#   - type: web
-#     name: rails
-#     runtime: ruby
-#     buildCommand: "./bin/render-build.sh"
-#     startCommand: "bundle exec rails s"
-#     envVars:
-#       - key: RAILS_MASTER_KEY
-#         sync: false
-#       - key: DATABASE_URL
-#         fromDatabase:
-#           name: postgres
-#           property: connectionString
-#       plan: free
-  
-
-
 databases:
-  - name: flatpickrails
+  - name: postgres
     databaseName: flatpickrails
-    user: flatpickrails
+    user: m7marius7
+    ipAllowList: []
 
 services:
   - type: web
-    name: flatpickrails
+    name: rails
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
-    startCommand: "bundle exec puma -C config/puma.rb"
-    plan: free
+    startCommand: "bundle exec rails s"
     envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: flatpickrails
-          property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: postgres
+          property: connectionString
+    plan: free
+  
+
+
+# databases:
+#   - name: flatpickrails
+#     databaseName: flatpickrails
+#     user: flatpickrails
+
+# services:
+#   - type: web
+#     name: flatpickrails
+#     runtime: ruby
+#     buildCommand: "./bin/render-build.sh"
+#     startCommand: "bundle exec puma -C config/puma.rb"
+#     plan: free
+#     envVars:
+#       - key: DATABASE_URL
+#         fromDatabase:
+#           name: flatpickrails
+#           property: connectionString
+#       - key: RAILS_MASTER_KEY
+#         sync: false
 
