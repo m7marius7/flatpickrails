@@ -4,9 +4,10 @@ databases:
     user: m7marius7
     ipAllowList: []
 
-services:
+services:git status
   - type: web
     name: rails
+    plan: free
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec rails s"
@@ -17,7 +18,7 @@ services:
         fromDatabase:
           name: postgres
           property: connectionString
-    plan: free
+  
   
 
 
